@@ -41,7 +41,7 @@ class CheckoutTillTest extends FlatSpec with Matchers with BeforeAndAfterAll {
     }
 
     it should "return 0 total cost for withOffer function" in {
-        CheckoutTill.totalCost(null) shouldBe 0.0
+        CheckoutTill.totalCost(null, CheckoutTill.withOffer) shouldBe 0.0
     }
 
 
