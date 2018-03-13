@@ -1,10 +1,13 @@
 package com.capgemini.javaTest
 
+import org.junit.runner.RunWith
 import org.scalatest.{BeforeAndAfterAll, FlatSpec, Matchers}
+import org.scalatest.junit.JUnitRunner
 
 /**
   * Created by Bharathi Pairan on 13/03/2018.
   */
+@RunWith(classOf[JUnitRunner])
 class CheckoutTillTest extends FlatSpec with Matchers with BeforeAndAfterAll {
 
     "Total cost" should "be calculated for apples" in {
