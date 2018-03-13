@@ -1,0 +1,22 @@
+group 'com.capgemini.javaTest'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'scala'
+apply plugin: 'idea'
+
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'org.scala-lang', name: 'scala-dist', version: project.property('scala.version')
+
+    zinc group: 'com.typesafe.zinc', name: 'zinc', version: project.property('zinc.compiler.version')
+    testCompile group: 'org.scalatest', name:'scalatest_2.12', version:project.property('scalatest.version')
+
+}

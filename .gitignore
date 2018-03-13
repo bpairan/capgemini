@@ -1,2 +1,8 @@
 *.class
 *.log
+.gradle/
+.idea/
+capgemini_exercise.iml
+gradle/
+gradlew
+gradlew.bat
