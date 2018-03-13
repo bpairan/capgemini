@@ -28,11 +28,19 @@ class CheckoutTillTest extends FlatSpec with Matchers with BeforeAndAfterAll {
         CheckoutTill.totalCost("Strawberry") shouldBe 0.0
     }
 
-    "Empty input" should "return 0 total cost" in {
+    "Empty input" should "return 0 total cost for withoutOffer function" in {
         CheckoutTill.totalCost("") shouldBe 0.0
     }
 
-    "Null input" should "return 0 total cost" in {
+    it should "return 0 total cost for withOffer function" in {
+        CheckoutTill.totalCost("", CheckoutTill.withOffer) shouldBe 0.0
+    }
+
+    "Null input" should "return 0 total cost for withoutOffer function" in {
+        CheckoutTill.totalCost(null) shouldBe 0.0
+    }
+
+    it should "return 0 total cost for withOffer function" in {
         CheckoutTill.totalCost(null) shouldBe 0.0
     }
 
@@ -52,12 +60,22 @@ class CheckoutTillTest extends FlatSpec with Matchers with BeforeAndAfterAll {
 
     }
 
-    "Discounted total cost" should "be calculated for Buy one get one free on applies"  in {
+    "Discounted total cost" should "be calculated for Buy one get one free on applies" in {
         CheckoutTill.totalCost("Apple, Apple, Apple", CheckoutTill.withOffer) shouldBe 1.20
     }
 
     it should "be calculated for 3 for 2 offer on oranges" in {
         CheckoutTill.totalCost("Orange, Orange, Orange, Orange, Orange", CheckoutTill.withOffer) shouldBe 1.00
+    }
+
+    it should "be calculated for both Buy one get one free on apples & 3 for 2 on oranges" in {
+        CheckoutTill.totalCost("Apple, Orange, Orange, Orange, Orange, Orange, Apple, Apple", CheckoutTill.withOffer) shouldBe 2.20
+
+    }
+
+    "No discount" should "be applied when there are no sufficient quantity for oranges" in {
+        CheckoutTill.totalCost("Orange, Orange", CheckoutTill.withOffer) shouldBe 0.50
+
     }
 
 
