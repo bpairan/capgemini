@@ -23,4 +23,8 @@ object Items {
 
     case object Unknown extends StoreItem(0, 0)
 
+    case class CheckoutItem(storeItem: StoreItem, quantity: Int) {
+        def cost: Double = (storeItem.price * quantity) / Math.pow(10, storeItem.precision)
+    }
+
 }

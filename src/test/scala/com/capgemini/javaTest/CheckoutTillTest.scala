@@ -36,4 +36,29 @@ class CheckoutTillTest extends FlatSpec with Matchers with BeforeAndAfterAll {
         CheckoutTill.totalCost(null) shouldBe 0.0
     }
 
+
+    "Number of quantities to be applied for pricing" should "be calculated for Buy one get one free with even quantity" in {
+        CheckoutTill.calculateOfferQuantity(quantity = 6, noOfItemsInOffer = 2, quantitiesMultiplier = 1) shouldBe 3
+
+    }
+
+    it should "be calculated for Buy one get one free with odd quantity" in {
+        CheckoutTill.calculateOfferQuantity(quantity = 7, noOfItemsInOffer = 2, quantitiesMultiplier = 1) shouldBe 4
+
+    }
+
+    it should "be calculated for 3 for 2 offer with even quantity" in {
+        CheckoutTill.calculateOfferQuantity(quantity = 7, noOfItemsInOffer = 3, quantitiesMultiplier = 2) shouldBe 5
+
+    }
+
+    "Discounted total cost" should "be calculated for Buy one get one free on applies"  in {
+        CheckoutTill.totalCost("Apple, Apple, Apple", CheckoutTill.withOffer) shouldBe 1.20
+    }
+
+    it should "be calculated for 3 for 2 offer on oranges" in {
+        CheckoutTill.totalCost("Orange, Orange, Orange, Orange, Orange", CheckoutTill.withOffer) shouldBe 1.00
+    }
+
+
 }
